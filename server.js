@@ -1,16 +1,24 @@
+//express
 const express = require('express');
 const app = express();
 
-const dbConnection = require('./config/connection');
+//Database Connection
+const {dbConnect} = require('./config/connection');
+dbConnect();
 
-dbConnection();
+//form handling
+app.use(express.json());
+app.use(express.urlencoded({extended:true}));
 
-require('dotenv').config()
+//router setup
+const userRoutes = require('./routers/userRoutes');
+app.use('/',userRoutes);
 
-app.get('/' , (req,res)=>{
-    res.send("Namaste");
-})
+//dotenv
+require('dotenv').config();
 
-app.listen(process.env.PORT , ()=>{
-    console.log("Server has started running..");
+
+//port
+app.listen(process.env.PORT,()=>{
+    console.log("Server has started running...");
 })
