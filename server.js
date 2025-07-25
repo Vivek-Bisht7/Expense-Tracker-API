@@ -2,6 +2,9 @@
 const express = require('express');
 const app = express();
 
+//dotenv
+require('dotenv').config();
+
 //Database Connection
 const {dbConnect} = require('./config/connection');
 dbConnect();
@@ -10,13 +13,13 @@ dbConnect();
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
-//router setup
+// // User router setup       !!! improve routes names
 const userRoutes = require('./routers/userRoutes');
 app.use('/',userRoutes);
 
-//dotenv
-require('dotenv').config();
-
+// // Expense router setup          !!! improve routes names
+const expenseRoutes = require('./routers/expenseRoute');
+app.use('/user',expenseRoutes);
 
 //port
 app.listen(process.env.PORT,()=>{
