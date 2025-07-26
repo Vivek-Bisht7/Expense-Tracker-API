@@ -3,7 +3,6 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const cookie = require('cookie-parser');
 
-require('dotenv').config();
 
 const userRegistration = async (req,res)=>{
     try{

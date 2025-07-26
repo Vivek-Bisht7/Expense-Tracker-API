@@ -5,6 +5,10 @@ const app = express();
 //dotenv
 require('dotenv').config();
 
+//handle cookies
+const cookieParser = require('cookie-parser');
+app.use(cookieParser());
+
 //Database Connection
 const {dbConnect} = require('./config/connection');
 dbConnect();
